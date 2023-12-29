@@ -1,4 +1,0 @@
-INDEX VERSION 1.134+C:\Users\USER\Desktop\HSK\.metadata\.plugins\org.eclipse.jdt.core
-1865797976.index
-2928551409.index
-1696264553.index
