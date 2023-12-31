@@ -22,6 +22,7 @@ public class Sach_Collection implements Serializable {
 		}
 		return false;
 	}
+	
 	public Sach tim(int ma) {
 		for(Sach s:ds) {
 			if(s.getMa()==ma) {
@@ -29,6 +30,10 @@ public class Sach_Collection implements Serializable {
 			}
 		}
 		return null;
+	}
+	
+	public Sach sua(int i,Sach sach) {
+		return ds.set(i, sach);
 	}
 	public int getSize() {
 		return ds.size();

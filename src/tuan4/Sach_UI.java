@@ -37,6 +37,7 @@ public class Sach_UI extends JFrame implements ActionListener,MouseListener  {
 	private JButton btnXoa;
 	private JButton btnXoaRong;
 	private JButton btnLuu;
+	private JButton btnSua;
 	public Sach_UI() {
 		dsSach=new Sach_Collection();
 		setTitle("Quan Li Sach");
@@ -95,12 +96,14 @@ public class Sach_UI extends JFrame implements ActionListener,MouseListener  {
 		bot.add(btnThem = new JButton("Them"));
 		bot.add(btnXoa = new JButton("Xoa"));
 		bot.add(btnXoaRong = new JButton("Xoa rong"));
+		bot.add(btnSua=new JButton("Sua"));
 		bot.add(btnLuu = new JButton("Luu"));
 		btnTim.addActionListener(this);
 		btnTim.addActionListener(this);
 		btnThem.addActionListener(this);
 		btnXoa.addActionListener(this);
 		btnXoaRong.addActionListener(this);
+		btnSua.addActionListener(this);
 		btnLuu.addActionListener(this);
 		tbl.addMouseListener(this);
 		try {
@@ -112,7 +115,7 @@ public class Sach_UI extends JFrame implements ActionListener,MouseListener  {
 			e.getStackTrace();
 		}
 		
-		setCellEditTable();
+//		setCellEditTable();
 	}
 	public void setCellEditTable() {
 		for(int i=0;i<tbl.getColumnCount();i++) {
@@ -147,7 +150,77 @@ public class Sach_UI extends JFrame implements ActionListener,MouseListener  {
 				them();
 			}
 		}
+		if(o==btnXoa) {
+			if(tbl.getSelectedRow()==-1) {
+				JOptionPane.showMessageDialog(this, "Hay chon dong muon xoa!!");
+			}
+			else {
+				if(xoa()) {
+					JOptionPane.showMessageDialog(this, "Xoa thanh cong");
+				}
+			}
+		}
+		if(o==btnXoaRong) {
+			xoaRong();
+		}
+		if(o==btnLuu) {
+			try {
+				if(LuuTru.save(dsSach, "data/DanhSachSach.txt")) {
+					JOptionPane.showMessageDialog(this, "Luu thanh cong!!");
+				}
+			} catch (Exception e2) {
+				// TODO: handle exception
+				JOptionPane.showMessageDialog(this, "Luu that bai!!");
+				e2.printStackTrace();
+			}
+		}
+		if(o==btnSua) {
+			sua();
+		}
+	}
+	private void xoaRong() {
+		txtMa.setText("");
+		txtTen.setText("");
+		txtSoLuong.setText("");
+		txtNXB.setText("");
+		txtMa.requestFocus();
+	}
+	private void sua() {
+		int i = tbl.getSelectedRow();
+		System.out.println(i);
+		fillForm();
+		try {
+			int ma = Integer.parseInt(txtMa.getText().trim());
+			String ten = txtTen.getText().trim();
+			int soLuong = Integer.parseInt(txtSoLuong.getText().trim());
+			String loai = comboBox.getSelectedItem().toString();
+			String nhaXB = txtNXB.getText().trim();
+			System.out.println(ten);
+			Sach sach = new Sach(ma,ten,soLuong,loai,nhaXB);
+//			if (!validDate())
+//				return;
+			dsSach.sua(i, sach);
+			
+			dfTB.setValueAt(sach.getTen(), i, 1);
+			dfTB.setValueAt(sach.getSoLuong(), i, 2);
+			dfTB.setValueAt(sach.getLoai(), i, 3);
+			dfTB.setValueAt(sach.getNxb(), i, 4);
 		
+			JOptionPane.showMessageDialog(this, "Sửa thành công");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			JOptionPane.showMessageDialog(this, "Sửa không thành công");
+		}
+	}
+	private boolean xoa() {
+		int i=tbl.getSelectedRow();
+		if(dsSach.xoa(i)) {
+			dfTB.removeRow(i);
+			return true;
+		}
+		JOptionPane.showMessageDialog(this, "Xoa khong thanh cong !!");
+		
+		return false;
 	}
 	private void them() {
 		try {
@@ -222,7 +295,15 @@ public class Sach_UI extends JFrame implements ActionListener,MouseListener  {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+		fillForm();
+	}
+	private void fillForm() {
+		int i = tbl.getSelectedRow();
+		txtMa.setText(dfTB.getValueAt(i, 0).toString());
+		txtTen.setText(dfTB.getValueAt(i, 1).toString());
+		txtSoLuong.setText(dfTB.getValueAt(i, 2).toString());
+		txtNXB.setText(dfTB.getValueAt(i, 4).toString());
+		comboBox.setSelectedItem(dfTB.getValueAt(i, 3));
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
