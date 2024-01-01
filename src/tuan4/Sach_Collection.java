@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sach_Collection implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	List<Sach> ds;
 	public Sach_Collection() {
 		ds=new ArrayList<Sach>();

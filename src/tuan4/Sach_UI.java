@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class Sach_UI extends JFrame implements ActionListener,MouseListener  {
+	private static final long serialVersionUID = 1L;
 	private Sach_Collection dsSach;
 	private JTextField txtMa;
 	private JTextField txtTen;
@@ -99,7 +100,6 @@ public class Sach_UI extends JFrame implements ActionListener,MouseListener  {
 		bot.add(btnSua=new JButton("Sua"));
 		bot.add(btnLuu = new JButton("Luu"));
 		btnTim.addActionListener(this);
-		btnTim.addActionListener(this);
 		btnThem.addActionListener(this);
 		btnXoa.addActionListener(this);
 		btnXoaRong.addActionListener(this);
@@ -114,18 +114,32 @@ public class Sach_UI extends JFrame implements ActionListener,MouseListener  {
 			JOptionPane.showMessageDialog(this, "Khong tim thay file");
 			e.getStackTrace();
 		}
-		
-//		setCellEditTable();
+		setCellEditTable();
 	}
+//	public void setCellEditTable() {
+//		for(int i=0;i<tbl.getColumnCount();i++) {
+//			tbl.getColumnModel().getColumn(i).setCellEditor(new DefaultCellEditor(new JTextField()) {
+//				public boolean isCellEditable(EventObject e) {
+//					return false;
+//				}
+//			});
+//		}
+//	}
+	
 	public void setCellEditTable() {
-		for(int i=0;i<tbl.getColumnCount();i++) {
-			tbl.getColumnModel().getColumn(i).setCellEditor(new DefaultCellEditor(new JTextField()) {
-				public boolean isCellEditable(EventObject e) {
-					return false;
-				}
-			});
-		}
+	    // Áp dụng NonEditableCellEditor cho cột "Mã Sach"
+	    tbl.getColumnModel().getColumn(0).setCellEditor(new DefaultCellEditor(new JTextField()) {
+	    	public boolean isCellEditable(EventObject e) {
+				return false;
+			}
+	    });
+
+	    // Các dòng khác giữ nguyên CellEditor mặc định
+	    for(int i=1; i<tbl.getColumnCount(); i++) {
+	        tbl.getColumnModel().getColumn(i).setCellEditor(new DefaultCellEditor(new JTextField()));
+	    }
 	}
+
 	private void updateTable() {
 		for(int i=0;i<dfTB.getRowCount();i++) {
 			dfTB.removeRow(i);
@@ -187,25 +201,25 @@ public class Sach_UI extends JFrame implements ActionListener,MouseListener  {
 	}
 	private void sua() {
 		int i = tbl.getSelectedRow();
-		System.out.println(i);
-		fillForm();
 		try {
 			int ma = Integer.parseInt(txtMa.getText().trim());
 			String ten = txtTen.getText().trim();
 			int soLuong = Integer.parseInt(txtSoLuong.getText().trim());
 			String loai = comboBox.getSelectedItem().toString();
+			System.out.println(loai);
 			String nhaXB = txtNXB.getText().trim();
-			System.out.println(ten);
 			Sach sach = new Sach(ma,ten,soLuong,loai,nhaXB);
+			
 //			if (!validDate())
 //				return;
 			dsSach.sua(i, sach);
-			
+			dfTB.setValueAt(sach.getMa(), i, 0);
 			dfTB.setValueAt(sach.getTen(), i, 1);
 			dfTB.setValueAt(sach.getSoLuong(), i, 2);
 			dfTB.setValueAt(sach.getLoai(), i, 3);
 			dfTB.setValueAt(sach.getNxb(), i, 4);
-		
+			 LuuTru.save(dsSach, "data/DanhSachSach.txt");
+//			tbl.setRowSelectionInterval(i, i);
 			JOptionPane.showMessageDialog(this, "Sửa thành công");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -299,11 +313,12 @@ public class Sach_UI extends JFrame implements ActionListener,MouseListener  {
 	}
 	private void fillForm() {
 		int i = tbl.getSelectedRow();
+		txtMa.setEditable(false);
 		txtMa.setText(dfTB.getValueAt(i, 0).toString());
 		txtTen.setText(dfTB.getValueAt(i, 1).toString());
 		txtSoLuong.setText(dfTB.getValueAt(i, 2).toString());
-		txtNXB.setText(dfTB.getValueAt(i, 4).toString());
 		comboBox.setSelectedItem(dfTB.getValueAt(i, 3));
+		txtNXB.setText(dfTB.getValueAt(i, 4).toString());
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {

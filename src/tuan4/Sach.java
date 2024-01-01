@@ -4,12 +4,13 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class Sach implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private int ma;
 	private String ten;
 	private int soLuong;
 	private String nxb;
 	private String loai;
-	public Sach(int ma, String ten, int soLuong, String nxb, String loai) {
+	public Sach(int ma, String ten, int soLuong, String loai, String nxb) {
 		super();
 		this.ma = ma;
 		this.ten = ten;
