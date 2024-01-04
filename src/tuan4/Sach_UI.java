@@ -139,6 +139,8 @@ public class Sach_UI extends JFrame implements ActionListener,MouseListener  {
 	        tbl.getColumnModel().getColumn(i).setCellEditor(new DefaultCellEditor(new JTextField()));
 	    }
 	}
+	//write data to table
+
 
 	private void updateTable() {
 		for(int i=0;i<dfTB.getRowCount();i++) {
@@ -154,7 +156,7 @@ public class Sach_UI extends JFrame implements ActionListener,MouseListener  {
 		// TODO Auto-generated method stub
 		Object o=e.getSource();
 		if(o==btnTim) {
-			if(txtTim.getText().length()==0) {
+			if(txtTim.getText().isEmpty()) {
 				JOptionPane.showMessageDialog(this, "Hay nhap ma muon tim.!!");
 			}
 			tim();
@@ -199,6 +201,7 @@ public class Sach_UI extends JFrame implements ActionListener,MouseListener  {
 		txtNXB.setText("");
 		txtMa.requestFocus();
 	}
+
 	private void sua() {
 		int i = tbl.getSelectedRow();
 		try {
@@ -209,6 +212,7 @@ public class Sach_UI extends JFrame implements ActionListener,MouseListener  {
 			System.out.println(loai);
 			String nhaXB = txtNXB.getText().trim();
 			Sach sach = new Sach(ma,ten,soLuong,loai,nhaXB);
+
 			
 //			if (!validDate())
 //				return;

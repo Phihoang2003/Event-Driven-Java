@@ -19,6 +19,7 @@ public class NhanVien implements Serializable {
 		this.tuoi = tuoi;
 		this.phai = phai;
 		this.luong = luong;
+
 	}
 	public String getMa() {
 		return ma;

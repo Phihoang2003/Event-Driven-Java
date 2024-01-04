@@ -4,35 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9924916-8946-44ee-aa4f-707da92afb1f" name="Changes" comment="" />
+    <list default="true" id="ec809077-12b2-4f8d-b8a2-f32931e03a8b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 8
-}</component>
-  <component name="ProjectId" id="2aOsEG7fzSpIalTF09U5vlJhogQ" />
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
+  <component name="ProjectId" id="2aU8VUG7MWhFDs9gJD2G1stz2wT" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/USER/Desktop/HSK/HSK/src/tuan4&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/USER/Desktop/HSK/HSK/src/tuan3"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a9924916-8946-44ee-aa4f-707da92afb1f" name="Changes" comment="" />
-      <created>1704200846274</created>
+      <changelist id="ec809077-12b2-4f8d-b8a2-f32931e03a8b" name="Changes" comment="" />
+      <created>1704361821090</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1704200846274</updated>
+      <updated>1704361821090</updated>
     </task>
     <servers />
   </component>
