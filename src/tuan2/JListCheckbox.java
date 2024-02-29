@@ -38,13 +38,13 @@ public class JListCheckbox extends JFrame implements ActionListener {
 	private JButton btnNhap;
 	private JTextField txtField;
 	private JCheckBox checkBox;
-	private DefaultListModel listModel;
-	private JList list;
 	private JButton btnClose;
 	private JButton btnCreateNumber;
 	private JButton btnSum;
 	private final int MAXSIZE = 10;
 	private JLabel resultSum;
+	private DefaultListModel<Integer> listModel;
+	private JList<Integer> list;
 	public JListCheckbox() {
 		//Init
 		setTitle("Thao tac tren JList");
